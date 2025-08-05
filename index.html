@@ -3,36 +3,127 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reddrop - MP4 Video Downloader</title>
+    <title>Reddrop - Smart MP4 Video Downloader</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      /* Custom scrollbar for a better look in WebKit browsers */
+      .custom-scrollbar::-webkit-scrollbar {
+        height: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #4a5568; /* gray-600 */
+        border-radius: 3px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #718096; /* gray-500 */
+      }
+    </style>
   </head>
-  <body class="bg-gray-950 text-white font-sans">
-    <div class="min-h-screen flex flex-col items-center justify-center px-4">
-      <div class="text-center max-w-2xl">
-        <h1 class="text-4xl sm:text-5xl font-bold text-red-500 mb-6">🎥 Reddrop</h1>
-        <p class="text-lg sm:text-xl text-gray-300 mb-8">
-          A smart MP4 video downloader using <code class="text-yellow-400">yt-dlp</code>.<br />
-          Installs yt-dlp if missing, simulates download size, and gets the job done fast.
-        </p>
-
-        <div class="bg-gray-800 text-left rounded-lg p-4 mb-6 shadow-lg">
-          <p class="font-mono text-green-300 text-sm sm:text-base">
-            echo "deb [trusted=yes] https://dhanushs005.github.io/rdrop/ ./" | sudo tee /etc/apt/sources.list.d/reddrop.list<br />
-            sudo apt update<br />
-            sudo apt install rdrop
+  <body class="bg-gray-900 text-white antialiased">
+    <div class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-950 to-gray-900 px-4 py-12">
+      
+      <main class="w-full max-w-3xl text-center">
+        <header class="mb-10">
+          <h1 class="text-5xl sm:text-6xl font-extrabold text-red-500 mb-4 flex justify-center items-center gap-3">
+            <i class="fas fa-video"></i>
+            Reddrop
+          </h1>
+          <p class="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto">
+            A smart MP4 video downloader using <code class="text-yellow-400 bg-gray-800 px-1.5 py-0.5 rounded-md font-mono">yt-dlp</code>.
+            <br class="hidden sm:block" />
+            It installs dependencies, simulates download size, and gets the job done fast.
           </p>
-        </div>
+        </header>
 
-        <a href="reddrop_1.0-1.deb" download
-          class="inline-block bg-red-600 hover:bg-red-700 transition px-6 py-3 text-white rounded-xl text-lg font-semibold shadow-md"
-        >
-          ⬇️ Download .deb
-        </a>
-      </div>
+        <section class="bg-gray-900/50 border border-gray-700/50 rounded-xl p-6 sm:p-8 shadow-2xl backdrop-blur-sm">
+          <h2 class="text-2xl font-bold text-white mb-6">Install on Debian/Ubuntu</h2>
+          
+          <div class="space-y-3 text-left">
 
-      <footer class="mt-16 text-gray-600 text-sm">
-        © 2025 <a href="https://github.com/dhanushs005" class="underline">dhanushs005</a> · Reddrop is free & open-source
+            <div class="relative flex items-center">
+              <div class="flex-grow bg-gray-950 rounded-lg p-3 pr-14 border border-gray-700 overflow-x-auto min-w-0 custom-scrollbar">
+                <code id="cmd1" class="text-green-300 text-sm whitespace-nowrap">echo "deb [trusted=yes] https://dhanushs005.github.io/rdrop/ ./" | sudo tee /etc/apt/sources.list.d/reddrop.list</code>
+              </div>
+              <button onclick="copyToClipboard(this, 'cmd1')" class="absolute top-1/2 right-2 -translate-y-1/2 bg-gray-700 hover:bg-gray-600 transition-all duration-200 w-10 h-10 flex items-center justify-center rounded-md text-gray-300 hover:text-white" aria-label="Copy command 1">
+                <i class="fas fa-copy"></i>
+              </button>
+            </div>
+
+            <div class="relative flex items-center">
+              <div class="flex-grow bg-gray-950 rounded-lg p-3 pr-14 border border-gray-700 overflow-x-auto min-w-0 custom-scrollbar">
+                <code id="cmd2" class="text-green-300 text-sm whitespace-nowrap">sudo apt update</code>
+              </div>
+              <button onclick="copyToClipboard(this, 'cmd2')" class="absolute top-1/2 right-2 -translate-y-1/2 bg-gray-700 hover:bg-gray-600 transition-all duration-200 w-10 h-10 flex items-center justify-center rounded-md text-gray-300 hover:text-white" aria-label="Copy command 2">
+                <i class="fas fa-copy"></i>
+              </button>
+            </div>
+
+            <div class="relative flex items-center">
+              <div class="flex-grow bg-gray-950 rounded-lg p-3 pr-14 border border-gray-700 overflow-x-auto min-w-0 custom-scrollbar">
+                <code id="cmd3" class="text-green-300 text-sm whitespace-nowrap">sudo apt install rdrop</code>
+              </div>
+              <button onclick="copyToClipboard(this, 'cmd3')" class="absolute top-1/2 right-2 -translate-y-1/2 bg-gray-700 hover:bg-gray-600 transition-all duration-200 w-10 h-10 flex items-center justify-center rounded-md text-gray-300 hover:text-white" aria-label="Copy command 3">
+                <i class="fas fa-copy"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-center my-8">
+            <hr class="flex-grow border-gray-700">
+            <span class="px-4 text-gray-500 font-medium">or</span>
+            <hr class="flex-grow border-gray-700">
+          </div>
+          
+          <a href="rdrop_v.1.0.deb" download
+             class="inline-flex items-center bg-red-600 hover:bg-red-700 transition-all duration-300 px-8 py-3 text-white rounded-xl text-lg font-semibold shadow-lg hover:shadow-red-500/30 transform hover:-translate-y-0.5"
+          >
+            <i class="fas fa-download mr-3"></i>Download .deb File
+          </a>
+
+        </section>
+      </main>
+
+      <footer class="mt-16 text-gray-500 text-sm">
+        © 2025 <a href="https://github.com/dhanushs005" class="underline hover:text-red-400 transition">dhanushs005</a> · Reddrop is free & open-source.
       </footer>
     </div>
+
+    <script>
+      function copyToClipboard(button, elementId) {
+        const textToCopy = document.getElementById(elementId).innerText.trim();
+        
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          const originalContent = button.innerHTML;
+          button.innerHTML = `<i class="fas fa-check"></i>`;
+          button.classList.remove('bg-gray-700');
+          button.classList.add('bg-green-600', 'text-white');
+          button.disabled = true;
+
+          setTimeout(() => {
+            button.innerHTML = originalContent;
+            button.classList.remove('bg-green-600', 'text-white');
+            button.classList.add('bg-gray-700');
+            button.disabled = false;
+          }, 2000);
+        }).catch(err => {
+          console.error('Failed to copy: ', err);
+          alert('Failed to copy to clipboard.');
+        });
+      }
+    </script>
   </body>
 </html>
